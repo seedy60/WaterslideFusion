@@ -1,0 +1,41 @@
+[project]
+name = "waterslide-fusion"
+version = "1.2.0"
+description = "Waterslide Fusion - accessible Windows port of Waterslide Extreme (2009), rebuilt in Python from the original .ipa"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "WaterslideFusion" }]
+dependencies = [
+    "pygame-ce>=2.5",
+    "numpy>=1.24",
+    "prismatoid>=0.18.2",
+    "accessible-output2==0.16",
+    "capstone>=5.0.9",
+    "pyinstaller-versionfile>=3.1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pyinstaller>=6.0"]
+gl = [
+    "moderngl>=5.12.0",
+]
+
+[project.scripts]
+waterslide-fusion = "waterslide.app:main_entry"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["waterslide"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.22.3",
+    "pytest>=9.1.1",
+]
